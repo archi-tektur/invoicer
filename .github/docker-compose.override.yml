@@ -1,5 +1,6 @@
 services:
   app:
     environment:
+      APP_ENV: "ci"
       PHP_OPCACHE_ENABLE: "false"
       VERSION: "1.0.2"
