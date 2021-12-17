@@ -18,3 +18,7 @@ services:
       - type: volume
         source: mariadb_storage
         target: /var/lib/mysql
+
+volumes:
+  mariadb_storage:
+    driver: local
