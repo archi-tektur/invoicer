@@ -38,6 +38,13 @@ services:
         source: ./app
         target: /app
     working_dir: /app
+
+  mariadb:
+    ports:
+      - mode: host
+        target: 3306
+        published: 33306
+        protocol: tcp
 volumes:
   composer_cache:
     driver: local
