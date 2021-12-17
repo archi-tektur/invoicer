@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ghcr.io/archi-tektur/invoicer:app-${VERSION:-0.1.1}
+    image: ghcr.io/archi-tektur/invoicer:app-${VERSION:-0.1.2}
     environment:
       HTTP_API_TESTS_ENTRYPOINT: http://app:8080
 
