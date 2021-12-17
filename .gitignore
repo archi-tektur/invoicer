@@ -42,5 +42,7 @@ vendor
 ### Application
 #############################
 
-/app/logs/*
-!/app/logs/.gitkeep
+/app/var/log/*
+!/app/var/log/.gitkeep
+/app/var/cache/*
+!/app/var/cache/.gitkeep
