@@ -2,26 +2,28 @@ services:
   app:
     user: "0"
     environment:
-      # PHP
+      APP_ENV: "dev"
+      APP_DEBUG: "1"
+      APP_SECRET: "00000000000000000000000000000000"
       PHP_OPCACHE_ENABLE: "false"
-
-      #Symfony
-      APP_SECRET: "some_secret"
-
       # Logs
-      CADDY_LOG_OUTPUT: "file /app/logs/caddy.log"
+      CADDY_LOG_OUTPUT: "file /app/var/log/caddy.log"
       CADDY_LOG_LEVEL: "INFO"
-      FPM_ACCESS_LOG: "/app/logs/php-fpm.access.log"
-      FPM_ERROR_LOG: "/app/logs/php-fpm.error.log"
+      FPM_ACCESS_LOG: "/app/var/log/php-fpm.access.log"
+      FPM_ERROR_LOG: "/app/var/log/php-fpm.error.log"
       FPM_LOG_LEVEL: "notice"
-      PHP_ERROR_LOG: "/app/logs/php.error.log"
+      PHP_ERROR_LOG: "/app/var/log/php.error.log"
       PHP_LOG_LEVEL: "E_ALL"
-      XDEBUG_OUTPUT_DIR: "/app/logs"
-
+      XDEBUG_OUTPUT_DIR: "/app/var/log"
       # Debugging
       PHP_IDE_CONFIG: "serverName=docker"
       XDEBUG_MODE: "debug"
       XDEBUG_CONFIG: "client_host=host.docker.internal"
+    # Docker Desktop for Mac and Windows automatically adds extra host "host.docker.internal"
+    # which points to the host machine.
+    # Try to uncomment following lines to add the same functionality to native Docker on Linux.
+    #extra_hosts:
+    #  - "host.docker.internal:172.17.0.1"
     ports:
       - mode: host
         target: 8080
