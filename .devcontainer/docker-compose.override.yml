@@ -6,7 +6,7 @@ services:
       APP_ENV: "dev"
       APP_DEBUG: "1"
       APP_SECRET: "00000000000000000000000000000000"
-      VERSION: "1.0.2"
+      VERSION: "0.1.2"
       PHP_OPCACHE_ENABLE: "false"
 
       # Logs
