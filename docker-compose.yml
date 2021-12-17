@@ -6,3 +6,15 @@ services:
     image: ghcr.io/archi-tektur/invoicer:app-${VERSION:-0.1.0}
     environment:
       HTTP_API_TESTS_ENTRYPOINT: http://app:8080
+
+  mariadb:
+    image: 'mariadb:10.6'
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: invoicer
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_password
+    volumes:
+      - type: volume
+        source: mariadb_storage
+        target: /var/lib/mysql
