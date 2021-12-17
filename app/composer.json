@@ -1,0 +1,40 @@
+{
+    "name": "damlys/phpdock",
+    "version": "8.1.1",
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "guzzlehttp/guzzle": "*",
+        "phpunit/phpunit": "*"
+    },
+    "scripts": {
+        "build": [
+            "echo 'Building...'"
+        ],
+        "vulnerability-scan": [
+            "echo 'Scanning vulnerabilities...'"
+        ],
+        "format-check": [
+            "echo 'Checking code format...'"
+        ],
+        "lint-check": [
+            "echo 'Checking code quality...'"
+        ],
+        "unit-tests": [
+            "vendor/bin/phpunit --testsuite 'Unit Tests Suite'"
+        ],
+        "http-api-tests": [
+            "vendor/bin/phpunit --testsuite 'HTTP API Tests Suite'"
+        ]
+    }
+}
