@@ -1,0 +1,7 @@
+kernel:
+    resource: ../../src/Shared/Infrastructure/Symfony/Kernel.php
+    type: annotation
+
+health_check:
+  resource: ../../src/Shared/Infrastructure/Symfony/Controller/
+  type: annotation
