@@ -1,6 +1,13 @@
 services:
   app:
     environment:
-      APP_ENV: "ci"
       PHP_OPCACHE_ENABLE: "false"
-      VERSION: "0.1.2"
+    volumes:
+      - type: volume
+        source: composer_cache
+        # composer config --global cache-dir
+        target: /root/.composer/cache
+      - type: bind
+        source: ./app
+        target: /app
+      working_dir: /app
