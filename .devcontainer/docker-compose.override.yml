@@ -2,10 +2,13 @@ services:
   app:
     user: "0"
     environment:
+      #Symfony
       APP_ENV: "dev"
       APP_DEBUG: "1"
       APP_SECRET: "00000000000000000000000000000000"
+      VERSION: "0.1.2"
       PHP_OPCACHE_ENABLE: "false"
+
       # Logs
       CADDY_LOG_OUTPUT: "file /app/var/log/caddy.log"
       CADDY_LOG_LEVEL: "INFO"
@@ -15,6 +18,7 @@ services:
       PHP_ERROR_LOG: "/app/var/log/php.error.log"
       PHP_LOG_LEVEL: "E_ALL"
       XDEBUG_OUTPUT_DIR: "/app/var/log"
+
       # Debugging
       PHP_IDE_CONFIG: "serverName=docker"
       XDEBUG_MODE: "debug"
