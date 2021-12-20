@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Login to Docker registry
-        run: docker login 'ghcr.io' --username='archi-tektur' --password='${{ secrets.GITHUB_TOKEN }}'
+        run: docker login --username='${{ secrets.DOCKER_HUB_USERNAME }}' --password='${{ secrets.DOCKER_HUB_TOKEN }}'
       - name: Set Git user
         run: |
           git config --global user.name 'github-actions'
@@ -37,33 +37,19 @@ jobs:
       - if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         name: Bump version (prerelease)
         working-directory: ./.semver
-        run: npm run release -- --release-as='patch' --prerelease='rc'
+        run: npm run release -- --prerelease='rc'
       - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         name: Bump version (release)
         working-directory: ./.semver
-        run: npm run release -- --release-as='patch'
+        run: npm run release
 
       - name: Link docker-compose.override.yml
         run: ln -s ./.github/docker-compose.override.yml .
-
       - name: Build Docker images
         run: docker-compose build
 
       - name: Run unit tests
-        run: docker-compose run --no-deps -T --rm app composer run-script unit-tests
-
-
-      #      - name: Run Docker vulnerability scanning
-      #        run: docker scan --severity=high "$(docker-compose config --format=json | jq --join-output .services.app.image)"
-      #        continue-on-error: true
-      #
-      #      - name: Run Composer vulnerability scanning
-      #        run: docker-compose run -T --no-deps --rm app composer run-script vulnerability-scan
-      #        continue-on-error: true
-      #      - name: Run code format check
-      #        run: docker-compose run -T --no-deps --rm app composer run-script format-check
-      #      - name: Run code lint check
-      #        run: docker-compose run -T --no-deps --rm app composer run-script lint-check
+        run: docker-compose run -T --no-deps --rm app composer run-script unit-tests
 
       - name: Run Docker containers
         run: docker-compose up --detach
