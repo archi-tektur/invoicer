@@ -12,3 +12,8 @@ services:
         source: ./app
         target: /app
     working_dir: /app
+
+volumes:
+  composer_cache:
+    driver: local
+    name: global_composer_cache
