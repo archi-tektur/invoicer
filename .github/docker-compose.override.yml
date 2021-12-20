@@ -3,7 +3,7 @@ services:
     user: "0"
     environment:
       #Symfony
-      APP_ENV: "ci"
+      APP_ENV: "dev"
       APP_DEBUG: "0"
       APP_SECRET: "00000000000000000000000000000000"
       VERSION: "0.1.2"
