@@ -6,7 +6,7 @@ namespace App\Shared\Domain;
 
 use App\Shared\Domain\Event\DomainEvent;
 
-abstract class EventSourcedAggregateRoot
+abstract class EventSourcedAggregateRoot implements AggregateRoot
 {
     /** @var DomainEvent[] */
     private array $uncommittedEvents = [];
