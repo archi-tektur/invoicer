@@ -55,8 +55,8 @@ jobs:
         run: docker-compose up --detach
       - name: Wait 10s
         run: sleep 10
-#      - name: Run HTTP API tests
-#        run: docker-compose exec -T app composer run-script http-api-tests
+      - name: Run HTTP API tests
+        run: docker-compose exec -T app composer run-script http-api-tests
       - name: Destroy Docker containers
         run: docker-compose down --volumes --remove-orphans
 
