@@ -2,3 +2,4 @@ services:
   app:
     environment:
       PHP_OPCACHE_ENABLE: "false"
+      DATABASE_URL: "mysql://db_user:db_password@app:3306/invoicer?serverVersion=mariadb-10.6.0"

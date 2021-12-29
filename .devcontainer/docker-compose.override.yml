@@ -18,6 +18,7 @@ services:
       PHP_ERROR_LOG: "/app/var/log/php.error.log"
       PHP_LOG_LEVEL: "E_ALL"
       XDEBUG_OUTPUT_DIR: "/app/var/log"
+      DATABASE_URL: "mysql://db_user:db_password@app:3306/invoicer?serverVersion=mariadb-10.6.0"
 
       # Debugging
       PHP_IDE_CONFIG: "serverName=docker"

@@ -25,7 +25,7 @@ class CreateUserActionTest extends TestCase
     {
         $client = HttpClient::create();
 
-        $response = $client->request('POST', 'http://app:8080/api/user');
+        $response = $client->request('POST', 'http://app:8080/api/user', ['body'=>['name'=>'fabien']]);
         $payload = $response->toArray();
 
         $this->assertEquals(200, $response->getStatusCode());

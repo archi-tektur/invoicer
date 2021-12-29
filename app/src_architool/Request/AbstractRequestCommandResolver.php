@@ -6,6 +6,7 @@ namespace ArchiTools\Request;
 
 use App\Shared\Infrastructure\Request\Exception\MissingRequestParameterException;
 use ArchiTools\Exception\ValidationFailedException;
+use Psr\Log\LoggerInterface;
 use ReflectionException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
@@ -16,13 +17,15 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class AbstractRequestCommandResolver implements ArgumentValueResolverInterface
 {
-    private SerializerInterface $serializer;
-    private ValidatorInterface $validator;
+    protected SerializerInterface $serializer;
+    protected ValidatorInterface $validator;
+    protected LoggerInterface $logger;
 
-    public function __construct(SerializerInterface $serializer, ValidatorInterface $validator)
+    public function __construct(SerializerInterface $serializer, ValidatorInterface $validator, LoggerInterface $logger)
     {
         $this->serializer = $serializer;
         $this->validator = $validator;
+        $this->logger = $logger;
     }
 
     abstract public function supports(Request $request, ArgumentMetadata $argument): bool;
