@@ -8,4 +8,11 @@ use App\Shared\Application\Command\CommandHandlerInterface;
 
 class CreateUserHandler implements CommandHandlerInterface
 {
+    public function __construct()
+    {
+    }
+
+    public function __invoke(CreateUserCommand $command): void
+    {
+    }
 }

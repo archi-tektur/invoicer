@@ -10,3 +10,7 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\Shared\Infrastructure\Request\RequestObjectResolver:
+       tags:
+          - { name: controller.argument_value_resolver, priority: 50 }
