@@ -6,5 +6,4 @@ namespace App\User\Domain\Specification;
 
 final class UniqueUserEmailSpecification
 {
-
 }

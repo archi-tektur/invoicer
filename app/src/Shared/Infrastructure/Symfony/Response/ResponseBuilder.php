@@ -65,18 +65,17 @@ class ResponseBuilder
         $headers = $this->response->headers ?? [];
 
         $content = [
-            'code'=>$this->response->code,
-            'message'=>$this->response->message,
+            'code' => $this->response->code,
+            'message' => $this->response->message,
         ];
 
-        if($this->response->details !== null){
+        if (null !== $this->response->details) {
             $content['details'] = $this->response->details;
         }
 
-        if($this->response->data !== null && $this->response->data !== []){
+        if (null !== $this->response->data && [] !== $this->response->data) {
             $content['data'] = $this->response->data;
         }
-
 
         return new JsonResponse($content, $this->response->code, $headers);
     }

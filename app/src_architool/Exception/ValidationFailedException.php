@@ -8,7 +8,7 @@ class ValidationFailedException extends \RuntimeException
 {
     public const DEFAULT_MESSAGE = 'exception.validation_failed';
 
-    private array | null $constraintValidations = null;
+    private array|null $constraintValidations = null;
 
     public static function create(array $constraintValidations, string $message = self::DEFAULT_MESSAGE): self
     {

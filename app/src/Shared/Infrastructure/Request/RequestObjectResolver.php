@@ -15,7 +15,7 @@ final class RequestObjectResolver extends AbstractRequestCommandResolver
         $interfaces = class_implements($argument->getType());
         $interfaceFound = in_array(Autoresolvable::class, $interfaces);
 
-        if($interfaceFound){
+        if ($interfaceFound) {
             $this->logger->info('Request: using automatic object resolver.');
         }
 

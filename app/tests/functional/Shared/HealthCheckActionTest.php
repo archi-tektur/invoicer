@@ -12,6 +12,10 @@ use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 final class HealthCheckActionTest extends TestCase
 {
     /**
@@ -21,16 +25,15 @@ final class HealthCheckActionTest extends TestCase
      * @throws TransportExceptionInterface
      * @throws ServerExceptionInterface
      */
-    public function test_health_check_works_properly(): void
+    public function testHealthCheckWorksProperly(): void
     {
         $client = HttpClient::create();
 
-        $response = $client->request('GET', "http://app:8080/api/health_check");
+        $response = $client->request('GET', 'http://app:8080/api/health_check');
         $payload = $response->toArray();
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('application/json', array_shift($response->getHeaders()['content-type']));
-
 
         $this->assertEquals('OK', $payload['status']);
     }

@@ -59,7 +59,7 @@ abstract class AbstractRequestCommandResolver implements ArgumentValueResolverIn
         yield $command;
     }
 
-    protected function getErrors(object $command): array | null
+    protected function getErrors(object $command): array|null
     {
         $violationList = $this->validator->validate($command);
 

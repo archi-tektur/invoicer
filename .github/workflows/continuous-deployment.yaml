@@ -45,18 +45,22 @@ jobs:
 
       - name: Link docker-compose.override.yml
         run: ln -s ./.github/docker-compose.override.yml .
+
       - name: Build Docker images
         run: docker-compose build
 
+      - name: Run linter
+        run: docker-compose run -T --no-deps --rm app composer unit-tests
+
       - name: Run unit tests
-        run: docker-compose run -T --no-deps --rm app composer run-script unit-tests
+        run: docker-compose run -T --no-deps --rm app composer unit-tests
 
       - name: Run Docker containers
         run: docker-compose up --detach
       - name: Wait 10s
         run: sleep 10
       - name: Run HTTP API tests
-        run: docker-compose exec -T app composer run-script http-api-tests
+        run: docker-compose exec -T app composer http-api-tests
       - name: Destroy Docker containers
         run: docker-compose down --volumes --remove-orphans
 

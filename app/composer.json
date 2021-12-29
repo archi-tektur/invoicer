@@ -69,8 +69,11 @@
         "format-check": [
             "echo 'Checking code format...'"
         ],
+        "lint-fix": [
+            "vendor/bin/php-cs-fixer fix -vv"
+        ],
         "lint-check": [
-            "echo 'Checking code quality...'"
+            "vendor/bin/php-cs-fixer fix --dry-run"
         ],
         "unit-tests": [
             "vendor/bin/phpunit --testsuite 'Unit Tests Suite'"
@@ -87,5 +90,8 @@
             "allow-contrib": false,
             "require": "^6.0"
         }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.4"
     }
 }

@@ -7,9 +7,8 @@ namespace App\User\Infrastructure\Doctrine\Repository;
 use App\User\Domain\Repository\UserStore;
 use App\User\Domain\User;
 
-class UserWriteModel implements UserStore
+final class UserWriteModel implements UserStore
 {
-
     public function get(): User
     {
         // TODO: Implement get() method.

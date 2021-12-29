@@ -6,5 +6,4 @@ namespace App\Shared\Infrastructure\Doctrine\Entity;
 
 class Event
 {
-
 }

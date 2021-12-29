@@ -8,15 +8,19 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\Uid\Uuid;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class CreateUserActionTest extends TestCase
 {
-    public function test_create_user(): void
+    public function testCreateUser(): void
     {
         $client = HttpClient::create();
 
-        $data = ['email'=> 'test@example.com', 'password'=>'testtesttesttest'];
+        $data = ['email' => 'test@example.com', 'password' => 'testtesttesttest'];
 
-        $response = $client->request('POST', 'http://app:8080/api/user', ['json'=>$data]);
+        $response = $client->request('POST', 'http://app:8080/api/user', ['json' => $data]);
         $payload = $response->toArray();
 
         $this->assertEquals(201, $response->getStatusCode());

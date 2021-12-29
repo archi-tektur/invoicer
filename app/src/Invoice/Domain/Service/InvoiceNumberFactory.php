@@ -23,7 +23,7 @@ final class InvoiceNumberFactory
     {
         $currentInvoice = $this->repository->getLastInvoiceNumber();
 
-        if ($currentInvoice === null) {
+        if (null === $currentInvoice) {
             throw new AbstractDomainException('Cannot generate new number because user has no previous invoices.');
         }
 
@@ -33,7 +33,7 @@ final class InvoiceNumberFactory
     public function first(): InvoiceNumberInterface
     {
         $now = new DateTimeImmutable();
-        $currentYear = (int)$now->format('Y');
+        $currentYear = (int) $now->format('Y');
 
         return new OrderedYearSortedInvoiceNumber(1, $currentYear);
     }

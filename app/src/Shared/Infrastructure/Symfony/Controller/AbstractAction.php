@@ -24,6 +24,5 @@ abstract class AbstractAction extends AbstractController
 
     public function do(CommandInterface $command): void
     {
-
     }
 }

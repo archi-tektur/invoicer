@@ -20,24 +20,6 @@ abstract class EventSourcedAggregateRoot
         $this->uncommittedEvents[] = $event;
     }
 
-    protected function handle(DomainEvent $event): void
-    {
-        $method = $this->getApplyMethod($event);
-
-        if (!method_exists($this, $method)) {
-            return;
-        }
-
-        $this->$method($event);
-    }
-
-    private function getApplyMethod(DomainEvent $event): string
-    {
-        $classParts = explode('\\', get_class($event));
-
-        return 'apply'.end($classParts);
-    }
-
     /** @return  DomainEvent[] */
     public function getUncommittedEvents(): array
     {
@@ -47,5 +29,23 @@ abstract class EventSourcedAggregateRoot
     public function getPlayhead(): int
     {
         return $this->playhead;
+    }
+
+    protected function handle(DomainEvent $event): void
+    {
+        $method = $this->getApplyMethod($event);
+
+        if (!method_exists($this, $method)) {
+            return;
+        }
+
+        $this->{$method}($event);
+    }
+
+    private function getApplyMethod(DomainEvent $event): string
+    {
+        $classParts = explode('\\', get_class($event));
+
+        return 'apply'.end($classParts);
     }
 }
