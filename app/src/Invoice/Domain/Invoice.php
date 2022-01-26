@@ -29,4 +29,9 @@ final class Invoice extends EventSourcedAggregateRoot
         $this->number = $event->number;
         $this->status = $event->status;
     }
+
+    public function getId(): Uuid
+    {
+       return $this->id;
+    }
 }

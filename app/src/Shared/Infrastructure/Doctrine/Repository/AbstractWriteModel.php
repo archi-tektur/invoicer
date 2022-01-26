@@ -23,7 +23,7 @@ class AbstractWriteModel
     {
         $events = $aggregateRoot->getUncommittedEvents();
 
-        foreach ($events as $domainEvent){
+        foreach ($events as $domainEvent) {
             $id = Uuid::v4();
             $occurredOn = new DateTime('now');
             $payload = $this->normalizer->normalize($domainEvent);

@@ -6,6 +6,7 @@ namespace App\User\Domain\Event;
 
 use App\Shared\Domain\Event\DomainEvent;
 use App\User\Domain\ValueObject\UserId;
+use Symfony\Component\Uid\Uuid;
 
 final class UserSignedIn implements DomainEvent
 {
@@ -14,5 +15,10 @@ final class UserSignedIn implements DomainEvent
     public function __construct(UserId $id)
     {
         $this->id = $id;
+    }
+
+    public function getId(): Uuid
+    {
+        return $this->id;
     }
 }

@@ -24,4 +24,9 @@ final class InvoiceWasCreated implements DomainEvent
         $this->status = $status;
         $this->user = $user;
     }
+
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
 }

@@ -36,14 +36,14 @@ final class User extends EventSourcedAggregateRoot
         $this->apply($event);
     }
 
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
     protected function applyUserWasCreated(UserWasCreated $event): void
     {
         $this->id = $event->id;
         $this->credentials = $event->credentials;
-    }
-
-    public function getId(): Uuid
-    {
-        return $this->id;
     }
 }
