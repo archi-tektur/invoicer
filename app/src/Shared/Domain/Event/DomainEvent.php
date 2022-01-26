@@ -9,4 +9,8 @@ use Symfony\Component\Uid\Uuid;
 interface DomainEvent
 {
     public function getId(): Uuid;
+
+    public function toArray(): array;
+
+    public static function fromArray(array $array): self;
 }

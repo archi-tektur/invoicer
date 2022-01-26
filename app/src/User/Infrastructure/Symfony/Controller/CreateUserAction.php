@@ -21,14 +21,18 @@ final class CreateUserAction extends AbstractAction
         $id = Uuid::v4();
 
         $command = new CreateUserCommand($id, $input->email, $input->password);
-
         $handler($command);
 
         return $this->responseBuilder()
             ->custom(Response::HTTP_CREATED)
             ->withDetails('User created successfully.')
             ->addBodyValue('id', $id->toRfc4122())
-            ->getJsonResponse()
-        ;
+            ->getJsonResponse();
+
+
+
+
+
+
     }
 }

@@ -5,22 +5,19 @@ declare(strict_types=1);
 namespace App\Shared\Infrastructure\Doctrine\Repository;
 
 use App\Shared\Infrastructure\Doctrine\Entity\Event;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-class EventsRepository extends DoctrineRepository
+class EventsRepository extends ServiceEntityRepository
 {
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($entityManager);
-
-        // todo: to be replaced with method call in service definitions
-        $this->setRepository(Event::class);
+        parent::__construct($registry, Event::class);
     }
 
     public function save(Event $event): void
     {
-        dump($event);
-        $this->entityManager->persist($event);
-        $this->entityManager->flush($event);
+        $this->_em->persist($event);
+        $this->_em->flush($event);
     }
 }

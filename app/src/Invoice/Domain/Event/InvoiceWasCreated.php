@@ -10,7 +10,7 @@ use App\Shared\Domain\Event\DomainEvent;
 use App\User\Domain\ValueObject\UserId;
 use Symfony\Component\Uid\Uuid;
 
-final class InvoiceWasCreated implements DomainEvent
+final class InvoiceWasCreated
 {
     public readonly Uuid $id;
     public readonly InvoiceNumberInterface $number;

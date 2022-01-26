@@ -6,6 +6,7 @@ namespace App\Shared\Infrastructure\Doctrine\Entity;
 
 use App\Shared\Infrastructure\Doctrine\Repository\EventsRepository;
 use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
@@ -27,9 +28,9 @@ class Event
     private array $payload;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private DateTime $occurredOn;
+    private DateTimeImmutable $occurredOn;
 
-    public function __construct(Uuid $id, Uuid $aggregateId, string $eventType, array $payload, DateTime $occurredOn)
+    public function __construct(Uuid $id, Uuid $aggregateId, string $eventType, array $payload, DateTimeImmutable $occurredOn)
     {
         $this->id = $id;
         $this->aggregateId = $aggregateId;
@@ -58,7 +59,7 @@ class Event
         return $this->payload;
     }
 
-    public function getOccurredOn(): DateTime
+    public function getOccurredOn(): DateTimeImmutable
     {
         return $this->occurredOn;
     }

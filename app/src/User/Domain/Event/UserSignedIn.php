@@ -21,4 +21,14 @@ final class UserSignedIn implements DomainEvent
     {
         return $this->id;
     }
+
+    public function toArray(): array
+    {
+        return ['id'=> $this->id->toRfc4122()];
+    }
+
+    public static function fromArray(array $array): DomainEvent
+    {
+        return new self(UserId::fromString($array['id']));
+    }
 }
