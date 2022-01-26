@@ -3,12 +3,18 @@
 declare(strict_types=1);
 
 use App\Shared\Infrastructure\Symfony\Kernel;
-use Spatie\Ignition\Ignition;
+use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
 require_once '../vendor/autoload.php';
 
-Ignition::make()->register();
+if ($_SERVER['APP_DEBUG']) {
+    umask(0000);
+
+    if (class_exists(Debug::class)) {
+        Debug::enable();
+    }
+}
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 $request = Request::createFromGlobals();

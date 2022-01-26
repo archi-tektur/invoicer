@@ -19,6 +19,7 @@ class EventsRepository extends DoctrineRepository
 
     public function save(Event $event): void
     {
+        dump($event);
         $this->entityManager->persist($event);
         $this->entityManager->flush($event);
     }
