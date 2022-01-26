@@ -4,15 +4,29 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Doctrine\Entity;
 
+use App\Shared\Infrastructure\Doctrine\Repository\EventsRepository;
 use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
+#[ORM\Entity(repositoryClass: EventsRepository::class)]
+#[ORM\Table(name: 'events')]
 class Event
 {
+    #[ORM\Id]
+    #[ORM\Column(type: 'uuid', unique: true)]
     private Uuid $id;
+
+    #[ORM\Column(type: 'uuid')]
     private Uuid $aggregateId;
+
+    #[ORM\Column(type: 'string')]
     private string $eventType;
+
+    #[ORM\Column(type: 'json')]
     private array $payload;
+
+    #[ORM\Column(type: 'datetime_immutable')]
     private DateTime $occurredOn;
 
     public function __construct(Uuid $id, Uuid $aggregateId, string $eventType, array $payload, DateTime $occurredOn)
