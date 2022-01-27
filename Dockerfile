@@ -1,6 +1,6 @@
 FROM ghcr.io/damlys/phpdock:sdk-8.1.0
 
-ENV VERSION="0.1.3"
+ENV VERSION="0.1.4"
 
 ENV APP_ENV="prod"
 ENV APP_DEBUG="0"
