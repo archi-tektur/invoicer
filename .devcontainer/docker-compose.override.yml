@@ -54,6 +54,7 @@ services:
         target: 3306
         published: 33306
         protocol: tcp
+
   redis:
     ports:
       - mode: host

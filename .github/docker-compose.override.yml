@@ -1,15 +1,27 @@
 services:
   app:
+    user: "0"
     environment:
+      APP_ENV: "dev"
+      APP_DEBUG: "1"
+      APP_SECRET: "00000000000000000000000000000000"
       PHP_OPCACHE_ENABLE: "false"
-      DATABASE_URL: "mysql://db_user:db_password@app:3306/invoicer?serverVersion=mariadb-10.6.0"
+      # Doctrine ORM
+      DATABASE_URL: "mysql://db_user:db_password@mariadb:3306/invoicer?serverVersion=mariadb-10.6.0"
+
+      # Symfony Messenger
       MESSENGER_TRANSPORT_DSN: "redis://redis:6379/messages"
+
   mariadb:
     ports:
       - mode: host
         target: 3306
         published: 33306
         protocol: tcp
+
   redis:
     ports:
-      - "6379:36379"
+      - mode: host
+        target: 6379
+        published: 36379
+        protocol: tcp
