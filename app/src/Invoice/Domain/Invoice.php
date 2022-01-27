@@ -23,15 +23,15 @@ final class Invoice extends EventSourcedAggregateRoot
         $this->apply($event);
     }
 
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
     protected function applyInvoiceWasCreated(InvoiceWasCreated $event): void
     {
         $this->id = $event->id;
         $this->number = $event->number;
         $this->status = $event->status;
-    }
-
-    public function getId(): Uuid
-    {
-       return $this->id;
     }
 }

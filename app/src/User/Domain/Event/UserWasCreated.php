@@ -4,18 +4,14 @@ declare(strict_types=1);
 
 namespace App\User\Domain\Event;
 
-use App\Shared\Domain\Event\DomainEvent;
-use App\User\Domain\User;
+use App\Shared\Domain\Event\DomainEventInterface;
 use App\User\Domain\ValueObject\Credentials;
 use App\User\Domain\ValueObject\Email;
 use App\User\Domain\ValueObject\HashedPassword;
 use App\User\Domain\ValueObject\UserId;
-use JetBrains\PhpStorm\ArrayShape;
-use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Uid\Uuid;
 
-final class UserWasCreated implements DomainEvent
+final class UserWasCreated implements DomainEventInterface
 {
     public readonly UserId $id;
     public readonly Credentials $credentials;
@@ -37,8 +33,8 @@ final class UserWasCreated implements DomainEvent
             'id' => $this->id->toRfc4122(),
             'credentials' => [
                 'email' => $this->credentials->email->toString(),
-                'password' => $this->credentials->hashedPassword->toString()
-            ]
+                'password' => $this->credentials->hashedPassword->toString(),
+            ],
         ];
     }
 

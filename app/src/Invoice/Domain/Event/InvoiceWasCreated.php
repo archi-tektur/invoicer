@@ -6,7 +6,6 @@ namespace App\Invoice\Domain\Event;
 
 use App\Invoice\Domain\ValueObject\InvoiceNumber\InvoiceNumberInterface;
 use App\Invoice\Domain\ValueObject\InvoiceStatus;
-use App\Shared\Domain\Event\DomainEvent;
 use App\User\Domain\ValueObject\UserId;
 use Symfony\Component\Uid\Uuid;
 

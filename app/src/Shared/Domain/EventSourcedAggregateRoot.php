@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain;
 
-use App\Shared\Domain\Event\DomainEvent;
+use App\Shared\Domain\Event\DomainEventInterface;
 
 abstract class EventSourcedAggregateRoot implements AggregateRoot
 {
-    /** @var DomainEvent[] */
+    /** @var DomainEventInterface[] */
     private array $uncommittedEvents = [];
     private int $playhead = -1;
 
-    public function apply(DomainEvent $event): void
+    public function apply(DomainEventInterface $event): void
     {
         $this->handle($event);
 
@@ -20,7 +20,7 @@ abstract class EventSourcedAggregateRoot implements AggregateRoot
         $this->uncommittedEvents[] = $event;
     }
 
-    /** @return  DomainEvent[] */
+    /** @return  DomainEventInterface[] */
     public function getUncommittedEvents(): array
     {
         return $this->uncommittedEvents;
@@ -31,7 +31,7 @@ abstract class EventSourcedAggregateRoot implements AggregateRoot
         return $this->playhead;
     }
 
-    protected function handle(DomainEvent $event): void
+    protected function handle(DomainEventInterface $event): void
     {
         $method = $this->getApplyMethod($event);
 
@@ -42,7 +42,7 @@ abstract class EventSourcedAggregateRoot implements AggregateRoot
         $this->{$method}($event);
     }
 
-    private function getApplyMethod(DomainEvent $event): string
+    private function getApplyMethod(DomainEventInterface $event): string
     {
         $classParts = explode('\\', get_class($event));
 

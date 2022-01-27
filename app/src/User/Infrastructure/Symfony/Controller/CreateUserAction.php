@@ -6,7 +6,6 @@ namespace App\User\Infrastructure\Symfony\Controller;
 
 use App\Shared\Infrastructure\Symfony\Controller\AbstractAction;
 use App\User\Application\Command\CreateUserCommand;
-use App\User\Application\Command\CreateUserHandler;
 use App\User\Infrastructure\Symfony\Controller\Input\CreateUserInput;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +26,7 @@ final class CreateUserAction extends AbstractAction
             ->custom(Response::HTTP_CREATED)
             ->withDetails('User created successfully.')
             ->addBodyValue('id', $id->toRfc4122())
-            ->getJsonResponse();
+            ->getJsonResponse()
+        ;
     }
 }

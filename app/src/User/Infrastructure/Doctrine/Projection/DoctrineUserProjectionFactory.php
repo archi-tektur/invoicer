@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace App\User\Infrastructure\Doctrine\Projection;
 
+use App\Shared\Infrastructure\Doctrine\Projector\AbstractProjector;
 use App\User\Domain\Event\UserWasCreated;
 use App\User\Infrastructure\Doctrine\Entity\UserEntity;
 use App\User\Infrastructure\Doctrine\Repository\DoctrineUserRepository;
 
-final class DoctrineUserProjector
+final class DoctrineUserProjectionFactory extends AbstractProjector
 {
-    private DoctrineUserRepository $repository;
+    private DoctrineUserRepository $userRepository;
 
     public function __construct(DoctrineUserRepository $repository)
     {
-        $this->repository = $repository;
+        $this->userRepository = $repository;
     }
 
     public function applyUserWasCreated(UserWasCreated $event): void
@@ -25,6 +26,12 @@ final class DoctrineUserProjector
             $event->credentials->hashedPassword->toString()
         );
 
-        $this->repository->save($entity);
+        $this->userRepository->save($entity);
+    }
+
+    /** {@inheritDoc} */
+    public static function getHandledEventsList(): array
+    {
+        return [UserWasCreated::class];
     }
 }

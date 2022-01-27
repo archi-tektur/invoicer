@@ -6,7 +6,7 @@ namespace App\Shared\Domain\Event;
 
 use Symfony\Component\Uid\Uuid;
 
-interface DomainEvent
+interface DomainEventInterface
 {
     public function getId(): Uuid;
 
