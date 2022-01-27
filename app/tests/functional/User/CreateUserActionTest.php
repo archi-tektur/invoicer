@@ -18,7 +18,7 @@ class CreateUserActionTest extends TestCase
     {
         $client = HttpClient::create();
 
-        $data = ['email' => 'test@example.com', 'password' => 'testtesttesttest'];
+        $data = ['email' => 'test@example.com', 'password' => 'raw_password'];
 
         $response = $client->request('POST', 'http://app:8080/api/user', ['json' => $data]);
         $payload = $response->toArray();
