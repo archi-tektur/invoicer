@@ -9,7 +9,7 @@ services:
       VERSION: "0.1.2"
       PHP_OPCACHE_ENABLE: "false"
 
-      # Logs
+      # Logging
       CADDY_LOG_OUTPUT: "file /app/var/log/caddy.log"
       CADDY_LOG_LEVEL: "INFO"
       FPM_ACCESS_LOG: "/app/var/log/php-fpm.access.log"
@@ -18,7 +18,12 @@ services:
       PHP_ERROR_LOG: "/app/var/log/php.error.log"
       PHP_LOG_LEVEL: "E_ALL"
       XDEBUG_OUTPUT_DIR: "/app/var/log"
+
+      # Doctrine ORM
       DATABASE_URL: "mysql://db_user:db_password@mariadb:3306/invoicer?serverVersion=mariadb-10.6.0"
+
+      # Symfony Messenger
+      MESSENGER_TRANSPORT_DSN: "redis://redis:6379/messages"
 
       # Debugging
       PHP_IDE_CONFIG: "serverName=docker"
@@ -37,7 +42,6 @@ services:
     volumes:
       - type: volume
         source: composer_cache
-        # composer config --global cache-dir
         target: /root/.composer/cache
       - type: bind
         source: ./app
@@ -49,6 +53,12 @@ services:
       - mode: host
         target: 3306
         published: 33306
+        protocol: tcp
+  redis:
+    ports:
+      - mode: host
+        target: 6379
+        published: 36379
         protocol: tcp
 volumes:
   composer_cache:

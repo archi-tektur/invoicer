@@ -19,6 +19,8 @@ services:
       - type: volume
         source: mariadb_storage
         target: /var/lib/mysql
+  redis:
+    image: redis:alpine
 
 volumes:
   mariadb_storage:
