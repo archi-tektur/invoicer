@@ -16,12 +16,12 @@ use Symfony\Component\Uid\Uuid;
 final class CreateUserAction extends AbstractAction
 {
     #[Route('/api/user', name: 'api_user_post', methods: ['POST'])]
-    public function __invoke(CreateUserInput $input, CreateUserHandler $handler): JsonResponse
+    public function __invoke(CreateUserInput $input): JsonResponse
     {
         $id = Uuid::v4();
 
         $command = new CreateUserCommand($id, $input->email, $input->password);
-        $handler($command);
+        $this->do($command);
 
         return $this->responseBuilder()
             ->custom(Response::HTTP_CREATED)
