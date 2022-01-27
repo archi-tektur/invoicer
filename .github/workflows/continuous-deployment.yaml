@@ -28,8 +28,6 @@ jobs:
         uses: actions/setup-node@v2.2.0
         with:
           node-version: '16'
-          cache: npm
-          cache-dependency-path: ./.semver
       - if: github.event_name == 'push'
         name: Install NPM modules
         working-directory: ./.semver
