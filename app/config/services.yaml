@@ -4,6 +4,12 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+
+    _instanceof:
+      App\Shared\Application\Command\CommandHandlerInterface:
+        public: true
+        tags:
+          - { name: messenger.message_handler, bus: messenger.bus.command }
     App\:
         resource: '../src/'
         exclude:
