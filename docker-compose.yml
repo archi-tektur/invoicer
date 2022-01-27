@@ -6,6 +6,7 @@ services:
     image: ghcr.io/archi-tektur/invoicer:app-${VERSION:-0.1.3}
     environment:
       HTTP_API_TESTS_ENTRYPOINT: http://app:8080
+      DATABASE_URL: null
 
   mariadb:
     image: 'mariadb:10.6'
@@ -18,6 +19,8 @@ services:
       - type: volume
         source: mariadb_storage
         target: /var/lib/mysql
+  redis:
+    image: redis:alpine
 
 volumes:
   mariadb_storage:

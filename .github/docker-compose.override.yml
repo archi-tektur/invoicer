@@ -1,4 +1,38 @@
 services:
   app:
+    user: "0"
     environment:
+      #Symfony
+      APP_SECRET: "00000000000000000000000000000000"
+      VERSION: "0.1.2"
       PHP_OPCACHE_ENABLE: "false"
+
+      # Logging
+      CADDY_LOG_OUTPUT: "file /app/var/log/caddy.log"
+      CADDY_LOG_LEVEL: "INFO"
+      FPM_ACCESS_LOG: "/app/var/log/php-fpm.access.log"
+      FPM_ERROR_LOG: "/app/var/log/php-fpm.error.log"
+      FPM_LOG_LEVEL: "notice"
+      PHP_ERROR_LOG: "/app/var/log/php.error.log"
+      PHP_LOG_LEVEL: "E_ALL"
+      XDEBUG_OUTPUT_DIR: "/app/var/log"
+
+      # Doctrine ORM
+      DATABASE_URL: "mysql://db_user:db_password@mariadb:3306/invoicer?serverVersion=mariadb-10.6.0"
+
+      # Symfony Messenger
+      MESSENGER_TRANSPORT_DSN: "redis://redis:6379/messages"
+
+  mariadb:
+    ports:
+      - mode: host
+        target: 3306
+        published: 33306
+        protocol: tcp
+
+  redis:
+    ports:
+      - mode: host
+        target: 6379
+        published: 36379
+        protocol: tcp

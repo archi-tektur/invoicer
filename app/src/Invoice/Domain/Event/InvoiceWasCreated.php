@@ -6,11 +6,10 @@ namespace App\Invoice\Domain\Event;
 
 use App\Invoice\Domain\ValueObject\InvoiceNumber\InvoiceNumberInterface;
 use App\Invoice\Domain\ValueObject\InvoiceStatus;
-use App\Shared\Domain\Event\DomainEvent;
 use App\User\Domain\ValueObject\UserId;
 use Symfony\Component\Uid\Uuid;
 
-final class InvoiceWasCreated implements DomainEvent
+final class InvoiceWasCreated
 {
     public readonly Uuid $id;
     public readonly InvoiceNumberInterface $number;
@@ -23,5 +22,10 @@ final class InvoiceWasCreated implements DomainEvent
         $this->number = $number;
         $this->status = $status;
         $this->user = $user;
+    }
+
+    public function getId(): Uuid
+    {
+        return $this->id;
     }
 }

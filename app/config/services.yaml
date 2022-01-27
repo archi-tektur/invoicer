@@ -4,9 +4,19 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+
+    _instanceof:
+      App\Shared\Application\Command\CommandHandlerInterface:
+        public: true
+        tags:
+          - { name: messenger.message_handler, bus: messenger.bus.command }
     App\:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\Shared\Infrastructure\Request\RequestObjectResolver:
+       tags:
+          - { name: controller.argument_value_resolver, priority: 50 }

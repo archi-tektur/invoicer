@@ -21,12 +21,12 @@ final class IntegerInvoiceNumber implements InvoiceNumberInterface
 
     public static function fromString(string $number): InvoiceNumberInterface
     {
-        return new self((int)$number);
+        return new self((int) $number);
     }
 
     public function toString(): string
     {
-        return (string)$this->number;
+        return (string) $this->number;
     }
 
     public function next(): IntegerInvoiceNumber

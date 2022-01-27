@@ -5,3 +5,7 @@ kernel:
 health_check:
   resource: ../../src/Shared/Infrastructure/Symfony/Controller/
   type: annotation
+
+user:
+  resource: ../../src/User/Infrastructure/Symfony/Controller/
+  type: annotation

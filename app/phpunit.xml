@@ -7,7 +7,7 @@
 >
   <testsuites>
     <testsuite name="HTTP API Tests Suite">
-      <directory>tests/HttpApiTests</directory>
+      <directory>tests/functional</directory>
     </testsuite>
     <testsuite name="Unit Tests Suite">
       <directory>tests/unit</directory>
