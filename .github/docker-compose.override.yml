@@ -4,6 +4,12 @@ services:
       PHP_OPCACHE_ENABLE: "false"
       DATABASE_URL: "mysql://db_user:db_password@app:3306/invoicer?serverVersion=mariadb-10.6.0"
       MESSENGER_TRANSPORT_DSN: "redis://redis:6379/messages"
+  mariadb:
+    ports:
+      - mode: host
+        target: 3306
+        published: 33306
+        protocol: tcp
   redis:
     ports:
       - "6379:36379"
