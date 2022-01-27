@@ -7,7 +7,7 @@ namespace App\Shared\Infrastructure\Symfony\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-final class HealthCheckController
+final class HealthCheckAction
 {
     #[Route('api/health_check', methods: ['GET'])]
     public function __invoke(): JsonResponse
