@@ -28,11 +28,5 @@ final class CreateUserAction extends AbstractAction
             ->withDetails('User created successfully.')
             ->addBodyValue('id', $id->toRfc4122())
             ->getJsonResponse();
-
-
-
-
-
-
     }
 }
