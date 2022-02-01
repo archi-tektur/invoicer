@@ -6,6 +6,9 @@ services:
         autoconfigure: true
 
     _instanceof:
+      App\Shared\Infrastructure\Symfony\Controller\AbstractAction:
+        tags:
+          - { name: controller.service_arguments }
       App\Shared\Application\Command\CommandHandlerInterface:
         public: true
         tags:
@@ -20,3 +23,4 @@ services:
     App\Shared\Infrastructure\Request\RequestObjectResolver:
        tags:
           - { name: controller.argument_value_resolver, priority: 50 }
+

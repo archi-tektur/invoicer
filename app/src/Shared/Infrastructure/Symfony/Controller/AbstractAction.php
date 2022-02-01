@@ -7,9 +7,8 @@ namespace App\Shared\Infrastructure\Symfony\Controller;
 use App\Shared\Application\Command\CommandBusInterface;
 use App\Shared\Application\Command\CommandInterface;
 use App\Shared\Infrastructure\Symfony\Response\ResponseBuilder;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-abstract class AbstractAction extends AbstractController
+abstract class AbstractAction
 {
     private ResponseBuilder $responseBuilder;
     private CommandBusInterface $commandBus;

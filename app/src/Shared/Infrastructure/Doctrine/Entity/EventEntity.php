@@ -11,7 +11,7 @@ use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: EventsRepository::class)]
 #[ORM\Table(name: 'events')]
-class Event
+class EventEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'uuid', unique: true)]
@@ -26,16 +26,26 @@ class Event
     #[ORM\Column(type: 'json')]
     private array $payload;
 
+    #[ORM\Column(type: 'integer')]
+    private int $playhead;
+
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $occurredOn;
 
-    public function __construct(Uuid $id, Uuid $aggregateId, string $eventType, array $payload, DateTimeImmutable $occurredOn)
-    {
+    public function __construct(
+        Uuid $id,
+        Uuid $aggregateId,
+        string $eventType,
+        array $payload,
+        int $playhead,
+        DateTimeImmutable $occurredOn
+    ) {
         $this->id = $id;
         $this->aggregateId = $aggregateId;
         $this->eventType = $eventType;
         $this->payload = $payload;
         $this->occurredOn = $occurredOn;
+        $this->playhead = $playhead;
     }
 
     public function getId(): Uuid
@@ -56,6 +66,11 @@ class Event
     public function getPayload(): array
     {
         return $this->payload;
+    }
+
+    public function getPlayhead(): int
+    {
+        return $this->playhead;
     }
 
     public function getOccurredOn(): DateTimeImmutable

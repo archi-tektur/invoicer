@@ -9,11 +9,6 @@ framework:
           middleware:
             - handle_message
 
-        messenger.bus.query:
-          default_middleware: false
-          middleware:
-            - handle_message
-
         messenger.bus.event.async:
           default_middleware: allow_no_handlers
 
@@ -26,12 +21,7 @@ framework:
             multiplier: 2
             max_delay: 0
           options:
-            exchange:
-              type: topic
-              name: events
-            queues:
-              events:
-                binding_keys: ['#']
+            stream: "events"
 
         users:
           dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
@@ -41,11 +31,6 @@ framework:
             multiplier: 2
             max_delay: 0
           options:
-            exchange:
-              type: topic
-              name: events
-            queues:
-              users:
-                binding_keys: ['#.User.#']
+            stream: "users"
         failed:
-          dsn: "%env(MESSENGER_TRANSPORT_DSN)%?queue_name=failed"
+          dsn: "%env(MESSENGER_TRANSPORT_DSN)%"

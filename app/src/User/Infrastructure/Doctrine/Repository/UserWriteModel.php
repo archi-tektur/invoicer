@@ -9,12 +9,19 @@ use App\Shared\Infrastructure\Doctrine\Repository\AbstractWriteModel;
 use App\User\Domain\Repository\UserStore;
 use App\User\Domain\User;
 use RuntimeException;
+use Symfony\Component\Uid\Uuid;
 
 final class UserWriteModel extends AbstractWriteModel implements UserStore
 {
-    public function get(): User
+    public function get(Uuid $id): User
     {
-        // TODO: Implement get() method.
+        $aggregate = $this->load(User::class, $id);
+
+        if (!$aggregate instanceof User) {
+            throw new RuntimeException('Aggregate type not matched.');
+        }
+
+        return $aggregate;
     }
 
     public function store(EventSourcedAggregateRoot $user): void
